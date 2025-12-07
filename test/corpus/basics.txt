@@ -1,0 +1,196 @@
+==================
+Simple function call
+==================
+
+note("c a f e")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)
+            (element)
+            (element)))))))
+
+==================
+Function call with method chain
+==================
+
+note("c a f e").s("piano")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (member_expression
+        (call_expression
+          (identifier)
+          (arguments
+            (pattern_string
+              (pattern
+                (element)
+                (element)
+                (element)
+                (element)))))
+        (identifier))
+      (arguments
+        (pattern_string
+          (pattern
+            (element)))))))
+
+==================
+Multiple method chains
+==================
+
+note("a3 c#4 e4 a4")
+  .s("sawtooth")
+  .cutoff(500)
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (member_expression
+        (call_expression
+          (member_expression
+            (call_expression
+              (identifier)
+              (arguments
+                (pattern_string
+                  (pattern
+                    (element)
+                    (element)
+                    (element)
+                    (element)))))
+            (identifier))
+          (arguments
+            (pattern_string
+              (pattern
+                (element)))))
+        (identifier))
+      (arguments
+        (number)))))
+
+==================
+Number argument
+==================
+
+s("bd").gain(0.5)
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (member_expression
+        (call_expression
+          (identifier)
+          (arguments
+            (pattern_string
+              (pattern
+                (element)))))
+        (identifier))
+      (arguments
+        (number)))))
+
+==================
+String argument with single quotes
+==================
+
+scale('C minor')
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (string)))))
+
+==================
+Multiple arguments
+==================
+
+s("bd").room(0.5, 0.8)
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (member_expression
+        (call_expression
+          (identifier)
+          (arguments
+            (pattern_string
+              (pattern
+                (element)))))
+        (identifier))
+      (arguments
+        (number)
+        (number)))))
+
+==================
+Signal as argument
+==================
+
+s("bd").cutoff(sine.range(500, 2000))
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (member_expression
+        (call_expression
+          (identifier)
+          (arguments
+            (pattern_string
+              (pattern
+                (element)))))
+        (identifier))
+      (arguments
+        (call_expression
+          (member_expression
+            (identifier)
+            (identifier))
+          (arguments
+            (number)
+            (number)))))))
+
+==================
+Multiple expressions
+==================
+
+note("c e g")
+s("bd sd")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)
+            (element))))))
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)))))))

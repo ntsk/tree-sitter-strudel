@@ -1,0 +1,242 @@
+==================
+Simple sequence
+==================
+
+note("c d e f")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)
+            (element)
+            (element)))))))
+
+==================
+Group with brackets
+==================
+
+note("[c d] e")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (group
+              (element)
+              (element))
+            (element)))))))
+
+==================
+Repeat with asterisk
+==================
+
+note("bd*4")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element
+              (modifier
+                (repeat)))))))))
+
+==================
+Slow down with slash
+==================
+
+note("[bd sd]/2")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (group
+              (element)
+              (element)
+              (modifier
+                (slow)))))))))
+
+==================
+Alternating with angle brackets
+==================
+
+note("<bd sd hh>")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (alternation
+              (element)
+              (element)
+              (element))))))))
+
+==================
+Rest with tilde
+==================
+
+note("bd ~ sd ~")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (rest)
+            (element)
+            (rest)))))))
+
+==================
+Chord with comma
+==================
+
+note("c,e,g")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (chord
+              (element)
+              (element)
+              (element))))))))
+
+==================
+Random choice with pipe
+==================
+
+note("bd|sd|hh")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (choice
+              (element)
+              (element)
+              (element))))))))
+
+==================
+Weight with at sign
+==================
+
+note("bd@2 sd")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element
+              (modifier
+                (weight)))
+            (element)))))))
+
+==================
+Replicate with exclamation
+==================
+
+note("bd!4")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element
+              (modifier
+                (replicate)))))))))
+
+==================
+Degrade with question mark
+==================
+
+note("bd?")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element
+              (modifier
+                (degrade)))))))))
+
+==================
+Complex pattern
+==================
+
+note("[c e g]*2 <a b>")
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (group
+              (element)
+              (element)
+              (element)
+              (modifier
+                (repeat)))
+            (alternation
+              (element)
+              (element))))))))

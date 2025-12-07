@@ -1,0 +1,63 @@
+==================
+Line comment
+==================
+
+// This is a comment
+note("c e g")
+
+---
+
+(source_file
+  (comment)
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)
+            (element)))))))
+
+==================
+Comment after expression
+==================
+
+note("c e g") // play notes
+
+---
+
+(source_file
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)
+            (element))))))
+  (comment))
+
+==================
+Multiple comments
+==================
+
+// First comment
+// Second comment
+note("c e g")
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (expression
+    (call_expression
+      (identifier)
+      (arguments
+        (pattern_string
+          (pattern
+            (element)
+            (element)
+            (element)))))))
