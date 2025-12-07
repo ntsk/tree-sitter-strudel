@@ -23,7 +23,7 @@ parser_config.strudel = {
 ```
 
 ```vim
-autocmd BufNewFile,BufRead *.strudel set filetype=strudel
+autocmd BufNewFile,BufRead *.str,*.std set filetype=strudel
 autocmd FileType strudel TSBufEnable highlight
 ```
 

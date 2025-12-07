@@ -7,7 +7,8 @@
       "title": "Strudel",
       "scope": "source.strudel",
       "file-types": [
-        "strudel"
+        "str",
+        "std"
       ],
       "injection-regex": "^strudel$",
       "class-name": "TreeSitterStrudel"
