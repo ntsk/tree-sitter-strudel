@@ -7,16 +7,17 @@ note("c a f e")
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (pattern_string
-          (pattern
-            (element)
-            (element)
-            (element)
-            (element)))))))
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element)
+              (element)
+              (element)
+              (element))))))))
 
 ==================
 Function call with method chain
@@ -27,23 +28,25 @@ note("c a f e").s("piano")
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (member_expression
         (call_expression
           (identifier)
           (arguments
-            (pattern_string
-              (pattern
-                (element)
-                (element)
-                (element)
-                (element)))))
+            (primary_expression
+              (pattern_string
+                (pattern
+                  (element)
+                  (element)
+                  (element)
+                  (element))))))
         (identifier))
       (arguments
-        (pattern_string
-          (pattern
-            (element)))))))
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element))))))))
 
 ==================
 Multiple method chains
@@ -56,7 +59,7 @@ note("a3 c#4 e4 a4")
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (member_expression
         (call_expression
@@ -64,20 +67,23 @@ note("a3 c#4 e4 a4")
             (call_expression
               (identifier)
               (arguments
-                (pattern_string
-                  (pattern
-                    (element)
-                    (element)
-                    (element)
-                    (element)))))
+                (primary_expression
+                  (pattern_string
+                    (pattern
+                      (element)
+                      (element)
+                      (element)
+                      (element))))))
             (identifier))
           (arguments
-            (pattern_string
-              (pattern
-                (element)))))
+            (primary_expression
+              (pattern_string
+                (pattern
+                  (element))))))
         (identifier))
       (arguments
-        (number)))))
+        (primary_expression
+          (number))))))
 
 ==================
 Number argument
@@ -88,18 +94,20 @@ s("bd").gain(0.5)
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (member_expression
         (call_expression
           (identifier)
           (arguments
-            (pattern_string
-              (pattern
-                (element)))))
+            (primary_expression
+              (pattern_string
+                (pattern
+                  (element))))))
         (identifier))
       (arguments
-        (number)))))
+        (primary_expression
+          (number))))))
 
 ==================
 String argument with single quotes
@@ -110,11 +118,12 @@ scale('C minor')
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (string)))))
+        (primary_expression
+          (string))))))
 
 ==================
 Multiple arguments
@@ -125,19 +134,22 @@ s("bd").room(0.5, 0.8)
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (member_expression
         (call_expression
           (identifier)
           (arguments
-            (pattern_string
-              (pattern
-                (element)))))
+            (primary_expression
+              (pattern_string
+                (pattern
+                  (element))))))
         (identifier))
       (arguments
-        (number)
-        (number)))))
+        (primary_expression
+          (number))
+        (primary_expression
+          (number))))))
 
 ==================
 Signal as argument
@@ -148,24 +160,28 @@ s("bd").cutoff(sine.range(500, 2000))
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (member_expression
         (call_expression
           (identifier)
           (arguments
-            (pattern_string
-              (pattern
-                (element)))))
+            (primary_expression
+              (pattern_string
+                (pattern
+                  (element))))))
         (identifier))
       (arguments
         (call_expression
           (member_expression
-            (identifier)
+            (primary_expression
+              (identifier))
             (identifier))
           (arguments
-            (number)
-            (number)))))))
+            (primary_expression
+              (number))
+            (primary_expression
+              (number))))))))
 
 ==================
 Multiple expressions
@@ -177,20 +193,22 @@ s("bd sd")
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (pattern_string
-          (pattern
-            (element)
-            (element)
-            (element))))))
-  (expression
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element)
+              (element)
+              (element)))))))
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (pattern_string
-          (pattern
-            (element)
-            (element)))))))
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element)
+              (element))))))))

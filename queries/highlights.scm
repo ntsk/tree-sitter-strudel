@@ -1,5 +1,7 @@
 (comment) @comment
 
+"const" @keyword
+
 (string) @string
 (pattern_string) @string
 
@@ -13,15 +15,29 @@
     (identifier) @function .))
 
 (member_expression
-  . (identifier) @variable
+  (primary_expression
+    (identifier) @variable)
   (identifier) @function)
 
 (member_expression
   (call_expression)
   (identifier) @function)
 
+(variable_declaration
+  (identifier) @variable)
+
+(arrow_function
+  (identifier) @variable)
+
+(arrow_function
+  (parameters
+    (identifier) @variable.parameter))
+
 ((identifier) @variable.builtin
   (#match? @variable.builtin "^(sine|saw|tri|square|cosine|rand|perlin|sine2|saw2|tri2|square2|cosine2|rand2|mouseX|mouseY|irand|brandBy)$"))
+
+(label_statement
+  "$:" @keyword)
 
 (rest) @keyword
 
@@ -31,6 +47,26 @@
 (replicate) @operator
 (degrade) @operator
 
+["=>" "?"] @operator
+
 ["[" "]" "<" ">" "(" ")"] @punctuation.bracket
 
-["," "|" "."] @punctuation.delimiter
+["," "|" "." "="] @punctuation.delimiter
+
+[
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  "=="
+  "==="
+  "!="
+  "!=="
+  "<"
+  "<="
+  ">"
+  ">="
+  "&&"
+  "||"
+] @operator
