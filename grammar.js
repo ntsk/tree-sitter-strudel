@@ -34,15 +34,17 @@ module.exports = grammar({
       'const',
       field('name', $.identifier),
       '=',
-      field('value', $._expression)
+      field('value', $._expression),
+      optional(';')
     ),
 
     label_statement: $ => seq(
       '$:',
-      $._expression
+      $._expression,
+      optional(';')
     ),
 
-    expression_statement: $ => $._expression,
+    expression_statement: $ => seq($._expression, optional(';')),
 
     _expression: $ => choice(
       $.ternary_expression,
@@ -191,14 +193,14 @@ module.exports = grammar({
       repeat1(seq('|', $.element))
     )),
 
-    rest: $ => '~',
+    rest: $ => seq('~', optional($.modifier)),
 
     element: $ => prec.right(3, seq(
       $._element_value,
       optional($.modifier)
     )),
 
-    _element_value: $ => /[a-zA-Z0-9#]+/,
+    _element_value: $ => /[a-zA-Z0-9#:]+/,
 
     modifier: $ => choice(
       $.repeat,
@@ -216,7 +218,7 @@ module.exports = grammar({
 
     string: $ => /'[^']*'/,
 
-    number: $ => /\d+(\.\d+)?/,
+    number: $ => /\d+(\.\d+)?|\.\d+/,
 
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
