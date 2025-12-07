@@ -1,0 +1,209 @@
+==================
+Const declaration
+==================
+
+const x = 1
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (primary_expression
+      (number))))
+
+==================
+Const with string
+==================
+
+const song = "<0@6 1@6>/4"
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (primary_expression
+      (pattern_string
+        (pattern
+          (alternation
+            (element
+              (modifier
+                (weight)))
+            (element
+              (modifier
+                (weight)))
+            (modifier
+              (slow))))))))
+
+==================
+Label statement
+==================
+
+$: s("bd")
+
+---
+
+(source_file
+  (label_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element))))))))
+
+==================
+Arrow function
+==================
+
+const fn = (x) => x
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (arrow_function
+      (parameters
+        (identifier))
+      (primary_expression
+        (identifier)))))
+
+==================
+Arrow function with body
+==================
+
+const fn = (x) => x.gain(0.5)
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (arrow_function
+      (parameters
+        (identifier))
+      (call_expression
+        (member_expression
+          (primary_expression
+            (identifier))
+          (identifier))
+        (arguments
+          (primary_expression
+            (number)))))))
+
+==================
+Binary expression
+==================
+
+setcps(175 / 60 / 4)
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (binary_expression
+          (binary_expression
+            (primary_expression
+              (number))
+            (primary_expression
+              (number)))
+          (primary_expression
+            (number)))))))
+
+==================
+Array literal
+==================
+
+const arr = [1, 2, 3]
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (array
+      (primary_expression
+        (number))
+      (primary_expression
+        (number))
+      (primary_expression
+        (number)))))
+
+==================
+Ternary expression
+==================
+
+const x = a ? 1 : 2
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (ternary_expression
+      (primary_expression
+        (identifier))
+      (primary_expression
+        (number))
+      (primary_expression
+        (number)))))
+
+==================
+Method chain on string
+==================
+
+$: n(song.pickRestart(["<0*4>*2"]))
+
+---
+
+(source_file
+  (label_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (call_expression
+          (member_expression
+            (primary_expression
+              (identifier))
+            (identifier))
+          (arguments
+            (array
+              (primary_expression
+                (pattern_string
+                  (pattern
+                    (alternation
+                      (element
+                        (modifier
+                          (repeat)))
+                      (modifier
+                        (repeat)))))))))))))
+
+==================
+All function
+==================
+
+all(x => x.room(0.3))
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (arrow_function
+          (identifier)
+          (call_expression
+            (member_expression
+              (primary_expression
+                (identifier))
+              (identifier))
+            (arguments
+              (primary_expression
+                (number)))))))))

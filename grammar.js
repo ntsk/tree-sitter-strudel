@@ -15,47 +15,139 @@ module.exports = grammar({
     $.comment,
   ],
 
+  conflicts: $ => [
+    [$.primary_expression, $.arrow_function],
+    [$.member_expression, $.primary_expression],
+    [$.primary_expression, $.parameters],
+  ],
+
   rules: {
     source_file: $ => repeat($._statement),
 
     _statement: $ => choice(
-      $.expression,
+      $.variable_declaration,
+      $.label_statement,
+      $.expression_statement,
     ),
 
-    expression: $ => $.call_expression,
+    variable_declaration: $ => seq(
+      'const',
+      field('name', $.identifier),
+      '=',
+      field('value', $._expression)
+    ),
+
+    label_statement: $ => seq(
+      '$:',
+      $._expression
+    ),
+
+    expression_statement: $ => $._expression,
+
+    _expression: $ => choice(
+      $.ternary_expression,
+      $.binary_expression,
+      $.call_expression,
+      $.member_expression,
+      $.arrow_function,
+      $.array,
+      $.primary_expression,
+    ),
+
+    primary_expression: $ => choice(
+      $.parenthesized_expression,
+      $.pattern_string,
+      $.string,
+      $.number,
+      $.identifier,
+    ),
+
+    parenthesized_expression: $ => seq(
+      '(',
+      $._expression,
+      ')'
+    ),
+
+    ternary_expression: $ => prec.right(1, seq(
+      $._expression,
+      '?',
+      $._expression,
+      ':',
+      $._expression
+    )),
+
+    binary_expression: $ => choice(
+      prec.left(2, seq($._expression, '||', $._expression)),
+      prec.left(3, seq($._expression, '&&', $._expression)),
+      prec.left(4, seq($._expression, '==', $._expression)),
+      prec.left(4, seq($._expression, '===', $._expression)),
+      prec.left(4, seq($._expression, '!=', $._expression)),
+      prec.left(4, seq($._expression, '!==', $._expression)),
+      prec.left(5, seq($._expression, '<', $._expression)),
+      prec.left(5, seq($._expression, '<=', $._expression)),
+      prec.left(5, seq($._expression, '>', $._expression)),
+      prec.left(5, seq($._expression, '>=', $._expression)),
+      prec.left(6, seq($._expression, '+', $._expression)),
+      prec.left(6, seq($._expression, '-', $._expression)),
+      prec.left(7, seq($._expression, '*', $._expression)),
+      prec.left(7, seq($._expression, '/', $._expression)),
+      prec.left(7, seq($._expression, '%', $._expression)),
+    ),
 
     call_expression: $ => prec.left(10, seq(
       choice(
         $.member_expression,
-        $.identifier
+        $.call_expression,
+        $.identifier,
+        $.parenthesized_expression,
       ),
       $.arguments
     )),
 
-    member_expression: $ => prec.left(9, seq(
+    member_expression: $ => prec.left(11, seq(
       choice(
         $.call_expression,
-        $.identifier
+        $.member_expression,
+        $.primary_expression,
       ),
       '.',
       $.identifier
     )),
 
-    arguments: $ => seq(
+    arrow_function: $ => prec.right(0, seq(
+      choice(
+        $.identifier,
+        $.parameters,
+      ),
+      '=>',
+      $._expression
+    )),
+
+    parameters: $ => seq(
       '(',
       optional(seq(
-        $._argument,
-        repeat(seq(',', $._argument))
+        $.identifier,
+        repeat(seq(',', $.identifier))
       )),
       ')'
     ),
 
-    _argument: $ => choice(
-      $.call_expression,
-      $.pattern_string,
-      $.string,
-      $.number,
-      $.identifier,
+    arguments: $ => seq(
+      '(',
+      optional(seq(
+        $._expression,
+        repeat(seq(',', $._expression))
+      )),
+      ')'
+    ),
+
+    array: $ => seq(
+      '[',
+      optional(seq(
+        $._expression,
+        repeat(seq(',', $._expression))
+      )),
+      ']'
     ),
 
     pattern_string: $ => seq(
@@ -85,7 +177,8 @@ module.exports = grammar({
     alternation: $ => seq(
       '<',
       repeat1($._pattern_element),
-      '>'
+      '>',
+      optional($.modifier)
     ),
 
     chord: $ => prec.left(2, seq(

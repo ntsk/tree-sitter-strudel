@@ -9,15 +9,16 @@ note("c e g")
 
 (source_file
   (comment)
-  (expression
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (pattern_string
-          (pattern
-            (element)
-            (element)
-            (element)))))))
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element)
+              (element)
+              (element))))))))
 
 ==================
 Comment after expression
@@ -28,15 +29,16 @@ note("c e g") // play notes
 ---
 
 (source_file
-  (expression
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (pattern_string
-          (pattern
-            (element)
-            (element)
-            (element))))))
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element)
+              (element)
+              (element)))))))
   (comment))
 
 ==================
@@ -52,12 +54,13 @@ note("c e g")
 (source_file
   (comment)
   (comment)
-  (expression
+  (expression_statement
     (call_expression
       (identifier)
       (arguments
-        (pattern_string
-          (pattern
-            (element)
-            (element)
-            (element)))))))
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element)
+              (element)
+              (element))))))))
