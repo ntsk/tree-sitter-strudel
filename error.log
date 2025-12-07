@@ -1,0 +1,27 @@
+Error detected while processing BufReadPost Autocommands for "*":
+Error executing lua callback: ...-neovim-unwrapped-0.11.5/share/nvim/runtime/filetype.lua:36: BufReadPost Autocommands for "*"..Fi
+leType Autocommands for "strudel"..FileType Autocommands for "*": Vim(append):Error executing lua callback: ....5/share/nvim/runti
+me/lua/vim/treesitter/highlighter.lua:273: ...d-0.11.5/share/nvim/runtime/lua/vim/treesitter/query.lua:373: Query error at 17:3. I
+mpossible pattern:
+  (identifier) @function)
+  ^
+
+stack traceback:
+        [C]: in function 'error'
+        ....5/share/nvim/runtime/lua/vim/treesitter/highlighter.lua:273: in function 'get_query'
+        ....5/share/nvim/runtime/lua/vim/treesitter/highlighter.lua:110: in function 'set_conceal_lines'
+        ....5/share/nvim/runtime/lua/vim/treesitter/highlighter.lua:149: in function 'new'
+        ...wrapped-0.11.5/share/nvim/runtime/lua/vim/treesitter.lua:432: in function 'start'
+        ...m/lazy/nvim-treesitter/lua/nvim-treesitter/highlight.lua:20: in function 'attach'
+        ...vim/lazy/nvim-treesitter/lua/nvim-treesitter/configs.lua:509: in function 'attach_module'
+        ...vim/lazy/nvim-treesitter/lua/nvim-treesitter/configs.lua:532: in function 'reattach_module'
+        ...vim/lazy/nvim-treesitter/lua/nvim-treesitter/configs.lua:133: in function <...vim/lazy/nvim-treesitter/lua/nvim-treesit
+ter/configs.lua:132>
+        [C]: in function 'nvim_exec_autocmds'
+        ...hare/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:161: in function <...hare/nvim/lazy/lazy.nvim/lua/lazy/core/ha
+ndler/event.lua:160>
+        [C]: in function 'xpcall'
+        .../.local/share/nvim/lazy/lazy.nvim/lua/lazy/core/util.lua:135: in function 'try'
+        ...hare/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:160: in function 'trigger'
+        ...hare/nvim/lazy/lazy.nvim/lua/lazy/core/handler/event.lua:89: in function <...hare/nvim/lazy/lazy.nvim/lua/lazy/core/han
+dler/event.lua:72>

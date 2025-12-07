@@ -12,10 +12,10 @@
 
 (call_expression
   (member_expression
-    (identifier) @function .))
+    property: (identifier) @function))
 
 (member_expression
-  (identifier) @function .)
+  property: (identifier) @function)
 
 (variable_declaration
   (identifier) @variable)
