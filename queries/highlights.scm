@@ -15,13 +15,7 @@
     (identifier) @function .))
 
 (member_expression
-  (primary_expression
-    (identifier) @variable)
-  (identifier) @function)
-
-(member_expression
-  (call_expression)
-  (identifier) @function)
+  (identifier) @function .)
 
 (variable_declaration
   (identifier) @variable)
