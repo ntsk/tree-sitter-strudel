@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "strudel",
+      "camelcase": "Strudel",
+      "title": "Strudel",
+      "scope": "source.strudel",
+      "file-types": [
+        "strudel"
+      ],
+      "injection-regex": "^strudel$",
+      "class-name": "TreeSitterStrudel"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Strudel grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "ntsk",
+        "email": "ntsk@ntsk.jp",
+        "url": "https://ntsk.jp/"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/ntsk/tree-sitter-strudel"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
