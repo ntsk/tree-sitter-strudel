@@ -1,0 +1,170 @@
+==================
+Decimal without leading zero
+==================
+
+gain(.5)
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (primary_expression
+          (number))))))
+
+==================
+Element with colon
+==================
+
+s("rd:3*4")
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (primary_expression
+          (pattern_string
+            (pattern
+              (element
+                (modifier
+                  (repeat))))))))))
+
+==================
+Rest with modifier
+==================
+
+note("~@3")
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (primary_expression
+          (pattern_string
+            (pattern
+              (rest
+                (modifier
+                  (weight))))))))))
+
+==================
+Statement with semicolon
+==================
+
+const x = 1;
+
+---
+
+(source_file
+  (variable_declaration
+    (identifier)
+    (primary_expression
+      (number))))
+
+==================
+Nested alternation
+==================
+
+note("< D#2 <E2m F#2m> >")
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (primary_expression
+          (pattern_string
+            (pattern
+              (alternation
+                (element)
+                (alternation
+                  (element)
+                  (element))))))))))
+
+==================
+Method chain with decimal
+==================
+
+s("bd").gain(.4)
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (member_expression
+        (call_expression
+          (identifier)
+          (arguments
+            (primary_expression
+              (pattern_string
+                (pattern
+                  (element))))))
+        (identifier))
+      (arguments
+        (primary_expression
+          (number))))))
+
+==================
+Complex label statement
+==================
+
+$: n("c").s('piano').gain(.5)
+
+---
+
+(source_file
+  (label_statement
+    (call_expression
+      (member_expression
+        (call_expression
+          (member_expression
+            (call_expression
+              (identifier)
+              (arguments
+                (primary_expression
+                  (pattern_string
+                    (pattern
+                      (element))))))
+            (identifier))
+          (arguments
+            (primary_expression
+              (string))))
+        (identifier))
+      (arguments
+        (primary_expression
+          (number))))))
+
+==================
+All function with arrow
+==================
+
+all(x => x.room(.3))
+
+---
+
+(source_file
+  (expression_statement
+    (call_expression
+      (identifier)
+      (arguments
+        (arrow_function
+          (identifier)
+          (call_expression
+            (member_expression
+              (primary_expression
+                (identifier))
+              (identifier))
+            (arguments
+              (primary_expression
+                (number)))))))))
+
