@@ -25,14 +25,11 @@
 
 (rest) @keyword
 
-(modifier
-  ["*" "/" "@" "!" "?"] @operator)
-
-(repeat) @number
-(slow) @number
-(weight) @number
-(replicate) @number
-(degrade) @number
+(repeat) @operator
+(slow) @operator
+(weight) @operator
+(replicate) @operator
+(degrade) @operator
 
 ["[" "]" "<" ">" "(" ")"] @punctuation.bracket
 
