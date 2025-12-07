@@ -107,13 +107,13 @@ module.exports = grammar({
     )),
 
     member_expression: $ => prec.left(11, seq(
-      choice(
+      field('object', choice(
         $.call_expression,
         $.member_expression,
         $.primary_expression,
-      ),
+      )),
       '.',
-      $.identifier
+      field('property', $.identifier)
     )),
 
     arrow_function: $ => prec.right(0, seq(
