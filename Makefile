@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-strudel
 HOMEPAGE_URL := https://github.com/ntsk/tree-sitter-strudel
-VERSION := 0.1.0
+VERSION := 0.2.1
 
 # repository
 SRC_DIR := src
